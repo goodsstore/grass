@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дякуємо за замовлення!</title>
+<title>Замовлення прийнято!</title>
 
 <style>
 body{
@@ -37,6 +37,17 @@ p{
   line-height:1.6;
 }
 
+.timer-box{
+  background:#fff4e5;
+  border:2px solid #ff9800;
+  padding:15px;
+  border-radius:10px;
+  margin:20px 0;
+  font-weight:bold;
+  font-size:18px;
+  color:#d35400;
+}
+
 .highlight{
   background:#eaf7ec;
   padding:12px;
@@ -61,13 +72,13 @@ p{
   transition:0.2s;
 }
 
-.viber{
-  background:#7360F2;
+.telegram{
+  background:#0088cc;
   color:#fff;
 }
 
-.telegram{
-  background:#0088cc;
+.viber{
+  background:#7360F2;
   color:#fff;
 }
 
@@ -80,25 +91,29 @@ p{
   opacity:0.9;
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="box">
 
-<h2>🌱 Дякуємо за замовлення!</h2>
+<h2>🌱 Замовлення прийнято!</h2>
 
-<p>Ми отримали вашу заявку. Наш менеджер зв'яжеться з вами найближчим часом для підтвердження замовлення.</p>
+<p>Наш менеджер зв'яжеться з вами найближчим часом.</p>
 
-<div class="highlight">
-🔥 У нашій Telegram-групі діють додаткові знижки та спеціальні пропозиції!
+<div class="timer-box">
+⏳ Знижка зафіксована за вами ще: <span id="timer">20:00</span>
 </div>
 
-<a class="btn telegram" href="https://t.me/ТВОЯ_ГРУПА" target="_blank">
+<div class="highlight">
+🔥 У Telegram-групі ціни нижчі та діють додаткові акції!
+</div>
+
+<a class="btn telegram" href="https://t.me/+3360HKg23fc3MTQy" target="_blank">
 Перейти в Telegram-групу
 </a>
 
-<a class="btn viber" href="viber://chat?number=%2B380XXXXXXXXX">
+<a class="btn viber" href="viber://chat?number=%2B380994950423">
 Написати у Viber
 </a>
 
@@ -107,10 +122,30 @@ p{
 </a>
 
 <p style="font-size:13px;color:#888;margin-top:15px;">
-Переходьте в групу, щоб отримати ще вигідніші умови.
+Переходьте зараз, щоб зафіксувати вигіднішу пропозицію.
 </p>
 
 </div>
+
+<script>
+let time = 20 * 60;
+const timerElement = document.getElementById("timer");
+
+const countdown = setInterval(() => {
+  let minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+  timerElement.textContent = minutes + ":" + seconds;
+
+  time--;
+
+  if (time < 0) {
+    clearInterval(countdown);
+    timerElement.textContent = "Час вийшов";
+  }
+}, 1000);
+</script>
 
 </body>
 </html>
