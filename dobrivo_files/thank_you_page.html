@@ -16,7 +16,6 @@ body{
   min-height:100vh;
   padding:20px;
 }
-
 .box{
   background:#fff;
   max-width:600px;
@@ -26,16 +25,8 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
   text-align:center;
 }
-
-h2{
-  color:#1e7e34;
-  margin-bottom:10px;
-}
-
-p{
-  color:#555;
-  line-height:1.6;
-}
+h2{ color:#1e7e34; margin-bottom:10px; }
+p{ color:#555; line-height:1.6; }
 
 .timer-box{
   background:#fff4e5;
@@ -47,7 +38,6 @@ p{
   font-size:18px;
   color:#d35400;
 }
-
 .highlight{
   background:#eaf7ec;
   padding:12px;
@@ -56,7 +46,6 @@ p{
   font-weight:bold;
   color:#1e7e34;
 }
-
 .btn{
   display:block;
   margin:12px auto;
@@ -71,80 +60,84 @@ p{
   text-decoration:none;
   transition:0.2s;
 }
+.telegram{ background:#0088cc; color:#fff; }
+.viber{ background:#7360F2; color:#fff; }
+.site{ background:#1e7e34; color:#fff; }
+.btn:hover{ opacity:0.9; }
 
-.telegram{
-  background:#0088cc;
-  color:#fff;
-}
-
-.viber{
-  background:#7360F2;
-  color:#fff;
-}
-
-.site{
-  background:#1e7e34;
-  color:#fff;
-}
-
-.btn:hover{
-  opacity:0.9;
+.note{
+  margin-top:12px;
+  font-size:13px;
+  color:#7a7a7a;
 }
 </style>
 </head>
 
 <body>
-
 <div class="box">
+  <h2>🌱 Замовлення прийнято!</h2>
+  <p>Ми отримали вашу заявку. Менеджер зв'яжеться з вами найближчим часом.</p>
 
-<h2>🌱 Замовлення прийнято!</h2>
+  <div class="timer-box">
+    ⏳ Знижка зафіксована за вами ще: <span id="timer">20:00</span>
+  </div>
 
-<p>Ми отримали вашу заявку. Менеджер зв'яжеться з вами найближчим часом.</p>
+  <div class="highlight">
+    🔥 У Telegram-групі діють додаткові знижки та нижчі ціни!
+  </div>
 
-<div class="timer-box">
-⏳ Знижка зафіксована за вами ще: <span id="timer">20:00</span>
-</div>
+  <a class="btn telegram" href="https://t.me/+3360HKg23fc3MTQy" target="_blank">
+    Перейти в Telegram-групу
+  </a>
 
-<div class="highlight">
-🔥 У Telegram-групі діють додаткові знижки та нижчі ціни!
-</div>
+  <!-- ✅ Viber: максимально стабільний варіант -->
+  <a class="btn viber" href="#" onclick="openViber(event)">
+    Написати у Viber
+  </a>
 
-<a class="btn telegram" href="https://t.me/+3360HKg23fc3MTQy" target="_blank">
-Перейти в Telegram-групу
-</a>
+  <a class="btn site" href="https://goodsstore.github.io/grass/">
+    Повернутися на сайт
+  </a>
 
-<a class="btn viber" href="viber://chat?number=380994950423">
-Написати у Viber
-</a>
-
-<a class="btn site" href="https://goodsstore.github.io/grass/">
-Повернутися на сайт
-</a>
-
-<p style="font-size:13px;color:#888;margin-top:15px;">
-Переходьте зараз, щоб зафіксувати вигіднішу пропозицію.
-</p>
-
+  <div class="note">
+    Якщо Viber не відкрив чат — номер буде скопійовано, вставте його у пошук Viber ✅
+  </div>
 </div>
 
 <script>
+/* Таймер 20 хв */
 let time = 20 * 60;
 const timerElement = document.getElementById("timer");
-
 const countdown = setInterval(() => {
   let minutes = Math.floor(time / 60);
   let seconds = time % 60;
-
   seconds = seconds < 10 ? "0" + seconds : seconds;
   timerElement.textContent = minutes + ":" + seconds;
-
   time--;
-
   if (time < 0) {
     clearInterval(countdown);
     timerElement.textContent = "Час вийшов";
   }
 }, 1000);
+
+/* Viber кнопка */
+function openViber(e){
+  e.preventDefault();
+  const phone = "+380994950423";
+
+  // копіюємо номер (щоб 100% не загубився)
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(phone).catch(()=>{});
+  }
+
+  // відкриваємо Viber з текстом номера (надійніше, ніж chat/add)
+  window.location.href = "viber://forward?text=" + encodeURIComponent(phone);
+
+  // якщо Viber відкрився, але контакт не підтягнувся — підказка
+  setTimeout(() => {
+    alert("Номер скопійовано: " + phone + "\nВідкрийте Viber → Пошук → вставте номер та напишіть нам ✅");
+  }, 900);
+}
 </script>
 
 </body>
