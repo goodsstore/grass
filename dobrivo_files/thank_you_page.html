@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Замовлення прийнято!</title>
 
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '855051300925311');
+fbq('track', 'Lead'); 
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=855051300925311&ev=Lead&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+
 <style>
 body{
   margin:0;
@@ -64,7 +84,6 @@ p{ color:#555; line-height:1.6; }
 .viber{ background:#7360F2; color:#fff; }
 .site{ background:#1e7e34; color:#fff; }
 .btn:hover{ opacity:0.9; }
-
 .note{
   margin-top:12px;
   font-size:13px;
@@ -75,37 +94,39 @@ p{ color:#555; line-height:1.6; }
 
 <body>
 <div class="box">
-  <h2>🌱 Замовлення прийнято!</h2>
-  <p>Ми отримали вашу заявку. Менеджер зв'яжеться з вами найближчим часом.</p>
 
-  <div class="timer-box">
-    ⏳ Знижка зафіксована за вами ще: <span id="timer">20:00</span>
-  </div>
+<h2>🌱 Замовлення прийнято!</h2>
 
-  <div class="highlight">
-    🔥 У Telegram-групі діють додаткові знижки та нижчі ціни!
-  </div>
+<p>Ми отримали вашу заявку. Менеджер зв'яжеться з вами найближчим часом.</p>
 
-  <a class="btn telegram" href="https://t.me/+3360HKg23fc3MTQy" target="_blank">
-    Перейти в Telegram-групу
-  </a>
+<div class="timer-box">
+⏳ Знижка зафіксована за вами ще: <span id="timer">20:00</span>
+</div>
 
-  <!-- ✅ Viber: максимально стабільний варіант -->
-  <a class="btn viber" href="#" onclick="openViber(event)">
-    Написати у Viber
-  </a>
+<div class="highlight">
+🔥 У Telegram-групі діють додаткові знижки та нижчі ціни!
+</div>
 
-  <a class="btn site" href="https://goodsstore.github.io/grass/">
-    Повернутися на сайт
-  </a>
+<a class="btn telegram" href="https://t.me/+3360HKg23fc3MTQy" target="_blank">
+Перейти в Telegram-групу
+</a>
 
-  <div class="note">
-    Якщо Viber не відкрив чат — номер буде скопійовано, вставте його у пошук Viber ✅
-  </div>
+<a class="btn viber" href="#" onclick="openViber(event)">
+Написати у Viber
+</a>
+
+<a class="btn site" href="https://goodsstore.github.io/grass/">
+Повернутися на сайт
+</a>
+
+<div class="note">
+Якщо Viber не відкрив чат — номер буде скопійовано, вставте його у пошук Viber ✅
+</div>
+
 </div>
 
 <script>
-/* Таймер 20 хв */
+/* Таймер */
 let time = 20 * 60;
 const timerElement = document.getElementById("timer");
 const countdown = setInterval(() => {
@@ -120,20 +141,17 @@ const countdown = setInterval(() => {
   }
 }, 1000);
 
-/* Viber кнопка */
+/* Viber */
 function openViber(e){
   e.preventDefault();
   const phone = "+380994950423";
 
-  // копіюємо номер (щоб 100% не загубився)
   if (navigator.clipboard) {
     navigator.clipboard.writeText(phone).catch(()=>{});
   }
 
-  // відкриваємо Viber з текстом номера (надійніше, ніж chat/add)
   window.location.href = "viber://forward?text=" + encodeURIComponent(phone);
 
-  // якщо Viber відкрився, але контакт не підтягнувся — підказка
   setTimeout(() => {
     alert("Номер скопійовано: " + phone + "\nВідкрийте Viber → Пошук → вставте номер та напишіть нам ✅");
   }, 900);
